@@ -8,11 +8,13 @@
     <title>Registration Form in HTML CSS</title>
     <!---Custom CSS File--->
     <link rel="stylesheet" href="style.css" />
+  
+
   </head>
   <body>
     <section class="container">
       <header>Registration Form</header>
-      <form action="/signup" method="POST" class="form">
+      <form  method="POST" class="form" name="signup-form">
         <div class="input-box">
           <label>Full Name</label>
           <input type="text" name="fullname" placeholder="Enter full name" required />
@@ -53,9 +55,9 @@
         </div>
         <div class="input-box address">
           <label> Profile Picture </label>
-           <input type="file" style="padding:10px;" name="profile_pic"  required />
+           <input type="file" style="padding:10px;" name="profile_pic" id="profile_pic"  required />
            <label> Upload_documents </label>
-           <input type="file" style="padding:10px;" name="documents" required />
+           <input type="file" style="padding:10px;" name="documents" id="documents" required />
           <label>Address</label>
           <input type="text" name="address" placeholder="Enter street address"  required />
           <!-- <input type="text" placeholder="Enter street address line 2" required /> -->
@@ -71,15 +73,78 @@
               </select>
             </div>
             <input type="text" name="city" placeholder="Enter your city" required />
-            
-           
-
           </div>
-          
+          <div class="column">
+            <div class="input-box">
+              <label>Password</label>
+              <input type="password" name="password" placeholder="Enter password" required />
+            </div>
+            <div class="input-box">
+              <label>Confirm Password</label>
+              <input type="password" name="cpass" placeholder="Enter confirm password" required />
+            </div>
         </div>
 
-       <input type="submit" id="submit" value="Register">
+       <input type="submit" id="submit" name="sub-btn" value="Register">
+       
       </form>
     </section>
+    <script src="../jquery.js"></script>
+      <script>
+      $(document).ready(function(){
+        $('.form').submit(function(event){
+          event.preventDefault(); // Prevent the default form submission
+          
+          var password = $('input[name="password"]').val();
+          var confirmPassword = $('input[name="cpass"]').val();
+          
+          if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return; // Exit the function if passwords don't match
+          }
+    console.log('hello');
+          // var documents = $("#documents").val().split("\\").pop();
+          // var profile_pic = $("#profile_pic").val().split("\\").pop();
+          // // Send AJAX request
+          var formData = new FormData($('.form')[0]); // Create a FormData object from the form
+
+var documents = $("#documents").val().split("\\").pop();
+var profile_pic = $("#profile_pic").val().split("\\").pop();
+
+formData.append("profile_pic", profile_pic);
+formData.append("documents", documents);
+
+console.log(formData); // Just for debugging purposes, you can see the FormData object in the browser console
+
+$.ajax({
+  type: 'POST',
+  url: '/signup', // Replace with the appropriate URL
+  data: formData,
+  contentType: false,
+  processData: false,
+  success: function(response) {
+    alert(response); // Show the response from the server
+  },
+  error: function(xhr, status, error) {
+    console.error(error); // Handle errors
+  }
+});
+
+          //   type: 'POST',
+          //   url: '/signup', // Replace with your server-side URL
+          //   data: formData,
+          //   success: function(response) {
+          //     // Handle success response
+          //     alert('Form submitted successfully!');
+          //     // You can do more actions here, like showing a success message
+          //   },
+          //   error: function(xhr, status, error) {
+          //     // Handle error response
+          //     alert('An error occurred while submitting the form.');
+          //   }
+          // });
+        });
+      });
+    </script>
   </body>
 </html>

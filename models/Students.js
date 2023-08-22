@@ -40,6 +40,10 @@ var schema = mongoose.Schema(
         city:{
             type:String,
             require:true
+        },
+        password:{
+            type:String,
+            require:true
         }
 
     },
