@@ -1,150 +1,157 @@
 <!DOCTYPE html>
 <!---Coding By CodingLab | www.codinglabweb.com--->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Registration Form in HTML CSS</title>
-    <!---Custom CSS File--->
-    <link rel="stylesheet" href="style.css" />
-  
 
-  </head>
-  <body>
-    <section class="container">
-      <header>Registration Form</header>
-      <form  method="POST" class="form" name="signup-form">
-        <div class="input-box">
-          <label>Full Name</label>
-          <input type="text" name="fullname" placeholder="Enter full name" required />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Registration Form in HTML CSS</title>
+  <!---Custom CSS File--->
+  <link rel="stylesheet" href="style.css" />
 
+
+</head>
+
+<body>
+  <section class="container">
+    <header>Registration Form</header>
+    <form method="POST" action="/signup" enctype="multipart/form-data" class="form" name="signup-form">
+      <div class="input-box">
+        <label>Full Name</label>
+        <input type="text" name="fullname" placeholder="Enter full name" required />
+      </div>
+
+      <div class="input-box">
+        <label>Email Address</label>
+        <input type="text" name="email" placeholder="Enter email address" required />
+      </div>
+
+      <div class="column">
         <div class="input-box">
-          <label>Email Address</label>
-          <input type="text" name="email" placeholder="Enter email address" required />
+          <label>Phone Number</label>
+          <input type="number" name="phone_number" placeholder="Enter phone number" required />
         </div>
+        <!-- <div class="input-box">
+          <label>Birth Date</label>
+          <input type="date" name="dob" placeholder="Enter birth date" required />
+        </div> -->
+      </div>
+      <div class="gender-box">
+        <h3>Gender</h3>
+        <div class="gender-option">
+          <div class="gender">
+            <input type="radio" id="check-male" name="gender" checked />
+            <label for="check-male" name="Male">male</label>
+          </div>
+          <div class="gender">
+            <input type="radio" id="check-female" name="gender" />
+            <label for="check-female" name="Female">Female</label>
+          </div>
+
+          <div class="gender">
+            <input type="radio" id="check-other" name="gender" />
+            <label for="check-other">prefer not to say</label>
+          </div>
+        </div>
+      </div>
+      <div class="input-box address">
+        <label> Picture </label>
+        <input type="file" style="padding:10px;" name="files" id="files" required />
+        <!-- <label> Upload_documents </label>
+        <input type="file" style="padding:10px;" name="documents" id="documents" required /> -->
+        <label>Address</label>
+        <input type="text" name="address" placeholder="Enter street address" required />
+        <!-- <input type="text" placeholder="Enter street address line 2" required /> -->
+
 
         <div class="column">
-          <div class="input-box">
-            <label>Phone Number</label>
-            <input type="number" name="phone_number" placeholder="Enter phone number" required />
+          <div class="select-box">
+            <select name="state">
+              <option hidden>State</option>
+              <option>Gujarat</option>
+              <option>Maharastra</option>
+              <option>Rajasthan</option>
+            </select>
           </div>
-          <div class="input-box">
-            <label>Birth Date</label>
-            <input type="date" name="dob" placeholder="Enter birth date" required />
-          </div>
+          <input type="text" name="city" placeholder="Enter your city" required />
         </div>
-        <div class="gender-box">
-          <h3>Gender</h3>
-          <div class="gender-option">
-            <div class="gender">
-              <input type="radio" id="check-male" name="gender" checked />
-              <label for="check-male" name="Male">male</label>
-            </div>
-            <div class="gender">
-              <input type="radio" id="check-female" name="gender" />
-              <label for="check-female" name="Female">Female</label>
-            </div>
-    
-            <div class="gender">
-              <input type="radio" id="check-other" name="gender" />
-              <label for="check-other">prefer not to say</label>
-            </div>
+        <div class="column">
+          <div class="input-box">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required />
           </div>
-        </div>
-        <div class="input-box address">
-          <label> Profile Picture </label>
-           <input type="file" style="padding:10px;" name="profile_pic" id="profile_pic"  required />
-           <label> Upload_documents </label>
-           <input type="file" style="padding:10px;" name="documents" id="documents" required />
-          <label>Address</label>
-          <input type="text" name="address" placeholder="Enter street address"  required />
-          <!-- <input type="text" placeholder="Enter street address line 2" required /> -->
-
-          
-          <div class="column">
-            <div class="select-box">
-              <select name="state">
-                <option hidden>State</option>
-                <option>Gujarat</option>
-                <option>Maharastra</option>
-                <option>Rajasthan</option>
-              </select>
-            </div>
-            <input type="text" name="city" placeholder="Enter your city" required />
+          <div class="input-box">
+            <label>Confirm Password</label>
+            <input type="password" name="cpass" placeholder="Enter confirm password" required />
           </div>
-          <div class="column">
-            <div class="input-box">
-              <label>Password</label>
-              <input type="password" name="password" placeholder="Enter password" required />
-            </div>
-            <div class="input-box">
-              <label>Confirm Password</label>
-              <input type="password" name="cpass" placeholder="Enter confirm password" required />
-            </div>
         </div>
 
-       <input type="submit" id="submit" name="sub-btn" value="Register">
-       
-      </form>
-    </section>
-    <script src="../jquery.js"></script>
-      <script>
-      $(document).ready(function(){
-        $('.form').submit(function(event){
-          event.preventDefault(); // Prevent the default form submission
-          
-          var password = $('input[name="password"]').val();
-          var confirmPassword = $('input[name="cpass"]').val();
-          
-          if (password !== confirmPassword) {
-            alert('Passwords do not match!');
-            return; // Exit the function if passwords don't match
+        <input type="button" id="submit" name="sub-btn" value="Register">
+
+    </form>
+  </section>
+  <script src="../jquery.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#submit').click(function (event) {
+        alert()
+        // event.preventDefault(); // Prevent the default form submission
+
+        var password = $('input[name="password"]').val();
+        var confirmPassword = $('input[name="cpass"]').val();
+
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return; // Exit the function if passwords don't match
+        }
+        console.log('hello');
+        // var documents = $("#documents").val().split("\\").pop();
+        // var profile_pic = $("#profile_pic").val().split("\\").pop();
+        // // Send AJAX request
+        var formData = new FormData($('form')[0]);  // Create a FormData object from the form
+
+        // var documents = $("#documents").val().split("\\").pop();
+        // var profile_pic = $("#profile_pic").val().split("\\").pop();
+
+        // formData.append("profile_pic", profile_pic);
+        // formData.append("documents", documents);
+        for (var pair of formData.entries()) {
+          console.log(pair[0] + ': ' + pair[1]);
+        }
+
+        alert(formData); // Just for debugging purposes, you can see the FormData object in the browser console
+
+        $.ajax({
+          method: 'POST',
+          url: '/signup', // Replace with the appropriate URL
+          contentType: false,
+          processData: false,
+          data: formData,
+          success: function (response) {
+            alert(response); // Show the response from the server
+          },
+          error: function (xhr, status, error) {
+            console.error(error); // Handle errors
           }
-    console.log('hello');
-          // var documents = $("#documents").val().split("\\").pop();
-          // var profile_pic = $("#profile_pic").val().split("\\").pop();
-          // // Send AJAX request
-          var formData = new FormData($('.form')[0]); // Create a FormData object from the form
-
-var documents = $("#documents").val().split("\\").pop();
-var profile_pic = $("#profile_pic").val().split("\\").pop();
-
-formData.append("profile_pic", profile_pic);
-formData.append("documents", documents);
-
-console.log(formData); // Just for debugging purposes, you can see the FormData object in the browser console
-
-$.ajax({
-  type: 'POST',
-  url: '/signup', // Replace with the appropriate URL
-  data: formData,
-  contentType: false,
-  processData: false,
-  success: function(response) {
-    alert(response); // Show the response from the server
-  },
-  error: function(xhr, status, error) {
-    console.error(error); // Handle errors
-  }
-});
-
-          //   type: 'POST',
-          //   url: '/signup', // Replace with your server-side URL
-          //   data: formData,
-          //   success: function(response) {
-          //     // Handle success response
-          //     alert('Form submitted successfully!');
-          //     // You can do more actions here, like showing a success message
-          //   },
-          //   error: function(xhr, status, error) {
-          //     // Handle error response
-          //     alert('An error occurred while submitting the form.');
-          //   }
-          // });
         });
+
+        //   type: 'POST',
+        //   url: '/signup', // Replace with your server-side URL
+        //   data: formData,
+        //   success: function(response) {
+        //     // Handle success response
+        //     alert('Form submitted successfully!');
+        //     // You can do more actions here, like showing a success message
+        //   },
+        //   error: function(xhr, status, error) {
+        //     // Handle error response
+        //     alert('An error occurred while submitting the form.');
+        //   }
+        // });
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

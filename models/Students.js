@@ -13,22 +13,22 @@ var schema = mongoose.Schema(
             type: String,
             require:true
         },
-        dob: {
-            type: Date,
-            require:true
-        },
+        // dob: {
+        //     type: Date,
+        //     require:true
+        // },
         gender: {
             type: String,
             require:true
         },
-        profile_pic: {
-            type: String,
+        images: {
+            type: Array,
             require:true
         },
-        documents: {
-            type: String,
-            require:true
-        },
+        // documents: {
+        //     type: String,
+        //     require:true
+        // },
         address:{
             type:String,
             require:true
