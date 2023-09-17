@@ -5,7 +5,9 @@ app.set("view engine", "ejs")
 const path = require('path');
 const url = 'mongodb+srv://krima2992:OJ1ObsphkBkXSgTA@mongoclusteer.9zeswxv.mongodb.net/test'
 const mongoose = require('mongoose');
-const StudentController = require('./controller/student')
+const StudentController = require('./controller/student');
+const { body, validationResult } = require('express-validator');
+
 const multer = require('multer');
 
 app.use('/', express.static(path.join(__dirname, 'static')))
@@ -48,7 +50,14 @@ app.get('/signin', (err, res) => {
     res.render('login');
 })
 
-app.post('/signup',upload.array('files', 5), StudentController.signup);
+app.post('/signup',upload.array('files', 5),[
+    body('fullname').notEmpty().withMessage('Full name is required'),
+    body('email').isEmail().withMessage('Invalid email address'),
+    body('phone_number').isMobilePhone().withMessage('Invalid phone number'),
+    body('dob').isDate().withMessage('Invalid date of birth'),
+    body('gender').isIn(['Male', 'Female', 'Other']).withMessage('Invalid gender'),
+    // Add more validation rules for other fields as needed
+  ], StudentController.signup);
 
 // app.post('/signup',StudentController.signup);
 app.listen(3000, () => {

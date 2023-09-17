@@ -1,6 +1,10 @@
 const Student=require('../models/Students')
-
+const { body, validationResult } = require('express-validator');
 exports.signup=async(req,res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
     console.log();
     console.log(req.files);
 let element=[];
@@ -28,6 +32,7 @@ let element=[];
 res.status(200).send({
     message:"signup"
 })
+        
 }    
     }).catch((err) => {
         console.log(err);
@@ -36,6 +41,8 @@ res.status(200).send({
         })
     });
 }
+
+// exports.signup=[]
 
 exports.login=async(req,res)=>{
 
