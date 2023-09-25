@@ -5,23 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Registration Form in HTML CSS</title>
+    <title>Login</title>
     <!---Custom CSS File--->
     <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script> -->
     <script>
-      //   $(document).ready(function(){
-      // $('sub-btn').onclick(function(){
-      //   if($('pass').val()!=$('cpass').val())
-      //     {
-      //       alert('he;llo');
-      //     }
-      // });
-
-      // // jQuery methods go here...
-      // });
+     
     </script>
   </head>
   <body>
@@ -65,25 +56,11 @@
 
             alert(formData); // Just for debugging purposes, you can see the FormData object in the browser console
 
-            // $.ajax({
-            //   method: 'POST',
-            //   url: '/signin', // Replace with the appropriate URL
-            //   contentType: false,
-            //   processData: false,
-            //   data: formData,
-            //   success: function (response) {
-            //     console.log(response);
-            //     alert(response.message); // Show the response from the server
-            //   },
-            //   error: function (xhr, status, error) {
-            //     console.error(error); // Handle errors
-
-            //   }
-            // });
+          
 
             $.ajax({
               method:'POST',
-              url: "/Student/signin",
+              url: "/Student/signin-que4",
               data: formData,
               success: function (result) {
                console.log(result);

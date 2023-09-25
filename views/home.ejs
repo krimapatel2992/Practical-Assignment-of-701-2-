@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th{
+            padding: 10px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+  <center><h1>Student Details</h1></center>
+    <a href="/add-student">Add New Student</a> <br><br>
+  <table border="2px solid black"  style="padding: 10px;">
+    <tbody>
+        <tr>
+            <th>Name</th>
+<th>Email</th>
+<th>Date of birth</th>
+<th>Gender</th>
+<th>Contact-number</th>
+
+        </tr>
+        
+        <%
+        if(data.length>0){
+            
+         data.forEach(function(stud) { %>
+        
+            <tr>
+            <td><%= stud.name%></td>
+            <td><%= stud.email%></td>
+            <td><%= stud.dob%></td>
+            <td><%= stud.gender%></td>
+            <td><%= stud.phone_number%></td>
+        </tr>
+          <% }); }
+          else{
+            %>
+            
+            <tr>
+                <td colspan="6">No records found</td>
+              </tr>
+        <% };%>
+    </tbody>
+  </table>
+  
+</body>
+</html>
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    
+    <h1>Add Student Details</h1>
+    <form id="add-student">
+        <!-- Name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <!-- Phone Number -->
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{10}" required><br><br>
+        <small>Format: 1234567890</small><br><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <!-- Gender -->
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br><br>
+
+        <!-- Date of Birth -->
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required><br><br>
+
+        <!-- <button type="submit" id="submit">Add Student</button> -->
+        <input type="button" id="submit" name="sub-btn" value="Add Student" />
+
+    </form>
+    <script>
+        $(document).ready(function(){
+            $('#submit').click(()=>{
+                var formdata=$('#add-student').serialize();
+                console.log(formdata);
+                $.ajax({
+                    method:"POST",
+                    url:'/Student/add-student',
+                    data:formdata,
+                    success:function(data){
+                        console.log(data);
+                        if(data.success==true){
+                            window.location.href='/Student/home';
+                        }
+                    }
+
+                })
+            })
+        })
+    </script>
+</body>
+</html>

@@ -5,8 +5,10 @@ app.set("view engine", "ejs")
 const path = require('path');
 const url = 'mongodb+srv://krima2992:OJ1ObsphkBkXSgTA@mongoclusteer.9zeswxv.mongodb.net/test'
 const mongoose = require('mongoose');
-const StudentController = require('./controller/student');
-const { body, validationResult } = require('express-validator');
+const session=require('express-session');
+const dotenv = require('dotenv');
+dotenv.config();
+const StudentRoutes=require('./routes/student.routes');
 
 const multer = require('multer');
 
@@ -18,6 +20,15 @@ app.use(
 
 app.use(
     express.json()
+);
+
+app.use(
+  session({
+    secret: 'login_session', // Change this to a strong, secret key
+    resave: false,
+    saveUninitialized: false,
+    // Additional configuration options can be added here
+  })
 );
 
 mongoose.connect(url, { useNewUrlParser: true })
@@ -42,22 +53,26 @@ const storage = multer.diskStorage({
   
 const upload = multer({ storage: storage });
 
+require('./routes/student.routes')(app);
 app.get('/signup', (err, res) => {
-    res.render('index.ejs');
+  res.render('index.ejs');
 })
 
 app.get('/signin', (err, res) => {
-    res.render('login');
+  res.render('login');
 })
 
-app.post('/signup',upload.array('files', 5),[
-    body('fullname').notEmpty().withMessage('Full name is required'),
-    body('email').isEmail().withMessage('Invalid email address'),
-    body('phone_number').isMobilePhone().withMessage('Invalid phone number'),
-    body('dob').isDate().withMessage('Invalid date of birth'),
-    body('gender').isIn(['Male', 'Female', 'Other']).withMessage('Invalid gender'),
-    // Add more validation rules for other fields as needed
-  ], StudentController.signup);
+
+
+
+app.get('/signin-que4',(err, res)=>{
+res.render('que4login.ejs')
+})
+
+app.get('/add-student',(err, res)=>{
+  res.render('studentsadd.ejs')
+})
+
 
 // app.post('/signup',StudentController.signup);
 app.listen(3000, () => {
