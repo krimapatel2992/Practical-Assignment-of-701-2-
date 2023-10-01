@@ -27,7 +27,6 @@ app.use(
     secret: 'login_session', // Change this to a strong, secret key
     resave: false,
     saveUninitialized: false,
-    // Additional configuration options can be added here
   })
 );
 
@@ -62,9 +61,6 @@ app.get('/signin', (err, res) => {
   res.render('login');
 })
 
-
-
-
 app.get('/signin-que4',(err, res)=>{
 res.render('que4login.ejs')
 })
@@ -74,7 +70,6 @@ app.get('/add-student',(err, res)=>{
 })
 
 
-// app.post('/signup',StudentController.signup);
 app.listen(3000, () => {
     console.log('server is started on PORT 3000');
 })

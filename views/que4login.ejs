@@ -65,29 +65,17 @@
               success: function (result) {
                console.log(result);
                if (result.success==true) {
+                document.cookie=`token=${result.data}`
                 window.location.href='/Student/home'
                 alert(result.message);
                }
                else if(result.success==false) {
-                alert(result.error);
+                alert(result.message);
                }
               }, 
               
             });
 
-            //   type: 'POST',
-            //   url: '/signup', // Replace with your server-side URL
-            //   data: formData,
-            //   success: function(response) {
-            //     // Handle success response
-            //     alert('Form submitted successfully!');
-            //     // You can do more actions here, like showing a success message
-            //   },
-            //   error: function(xhr, status, error) {
-            //     // Handle error response
-            //     alert('An error occurred while submitting the form.');
-            //   }
-            // });
           });
         });
       </script>

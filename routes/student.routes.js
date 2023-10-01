@@ -32,7 +32,12 @@ module.exports = app => {
       router.post('/signin',StudentController.login);
       router.post('/signin-que4',StudentController.signin);
       router.post('/add-student',StudentController.addStudent);
+      router.post('/edit-student',StudentController.verifyToken,StudentController.editStudent);
+      router.get('/delete-student',StudentController.deleteStudent);
+      router.get('/get-student',StudentController.getStudentById);
       router.get('/home',StudentController.getStudent);
+      router.get('/get-all-student',StudentController.getStudents);
+
   
   
     app.use("/Student", router);
